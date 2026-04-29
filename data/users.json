@@ -1,0 +1,13 @@
+[
+    {
+        "staffID": 1,
+        "username": "TestMan",
+        "firstName":"Test",
+        "lastName": "Man",
+        "email": "tman@tman.com",
+        "password": "password",
+        "accessLevel": 0,
+        "created": "29/04/2026 10:42",
+        "lastLogin": "29/04/2026 10:42"
+    }
+]
