@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enomy Finances | Login</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
 </head>
 <body>
     <div class="LoginForm">
@@ -17,6 +18,9 @@
             <input type="password" name="password" required>
 
             <button type="submit">Login</button>
+            {% if error %}
+                <p class="error">{{error}}</p>
+            {% endif %}
         </form>
     </div>
 </body>

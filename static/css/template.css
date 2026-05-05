@@ -1,0 +1,50 @@
+body
+{
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    font-family: 'Courier New', Courier, monospace; /*change*/
+
+}
+
+/*navbar*/
+.navBar
+{
+    width: 235px;
+    background-color: blueviolet;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.navBar h2
+{
+    color: white;
+    padding: 10px 0;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+
+.navBar a
+{
+    padding: 10px;
+    background-color: gray;
+    display: block;
+    border: black;
+    border-radius: 2px;
+    color: white;
+    border-style: solid;
+}
+
+.userInfo
+{
+    margin-top: auto;
+    font-size: 14px;
+}
+
+.content
+{
+    flex: 1;
+    padding: 30px;
+}

@@ -1,0 +1,16 @@
+<div class="navBar">
+    <h2>INSERT LOGO HERE</h2>
+
+    <a href="/dashboard">Dashboard</a>
+    <a href ="/exchange">Exchange</a>
+    <a href = "/investments">Investments</a>
+    <a href = "/customers">Customers</a>
+    {% if session['accessLevel'] == "admin" %}
+    <a href ="/admin">Admin Panel</a>
+    {% endif %}
+
+    <div class="userInfo">
+        <p>Logged in as {{session['fname']}}</p>
+        <a href="/logout" id="logout">Logout</a>
+    </div>
+</div>

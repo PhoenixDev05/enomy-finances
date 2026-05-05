@@ -1,0 +1,2 @@
+[2026-05-05 10:30:22] [127.0.0.1] [User: admin | Action: Login Attempt | Result: Fail]
+[2026-05-05 10:32:29] [127.0.0.1] [User: TestMan | Action: Login Attempt | Result: Successful Login]
