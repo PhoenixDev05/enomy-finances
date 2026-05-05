@@ -1,5 +1,5 @@
 import os
-from flask import request
+from flask import request, jsonify
 from flask import Flask, render_template, redirect, session, url_for
 from functools import wraps
 from users import User
@@ -14,7 +14,9 @@ app = Flask(__name__)
 app.secret_key = "12345"
 UM = UserManager()
 audit = Auditing()
-currExchance = Exchange()
+currExchange = Exchange()
+currExchange.loadHistory()
+currExchange.getLatestRates()
 
 #-------------------------
 #DECORATED FUNCTIONS
@@ -65,12 +67,24 @@ def Login():
 def dashboard():
     return render_template("dashboard.html")
 
-@app.route("/exchange")
+@app.route("/exchange", methods=["GET", "POST"])
 @Login_Required
 def exchange():
+            
     return render_template("exchange.html")
     
-
+@app.route("/api/exchange/<startCurr>/<targetCurr>/<startAmount>/", methods=["GET", "POST"])
+@Login_Required
+def currExchangeAPI(startCurr, targetCurr, startAmount):
+    
+    #startCurr = request.form["baseCurr"]
+    #targetCurr = request.form["conCurr"]
+    #startAmount = request.form["baseAmount"]
+    currExchange.getBaseRate(startCurr)
+    currExchange.getTargetRate(targetCurr)
+    convertedValue = currExchange.conversion(startCurr, targetCurr, startAmount)
+    print(convertedValue)
+    return jsonify({"convertedValue": convertedValue})
 #logout
 @app.route("/logout")
 @Login_Required

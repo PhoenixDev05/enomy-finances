@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enomy Finances | Dashboard</title>
+    <title>Enomy Finances | Currency Exchange</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/exchange.css') }}">
-
+    <script src="/static/js/convert.js" defer></script>
+    
 </head>
 <body>
+    
     {% include 'navbar.html'%}
     <div class="content">
         <h2>Enomy Finances | Exchange</h2>
         <div class="inputBox">
             //this will be for the god damn user input
-            <form method="post">
+            
                 <label for="baseCurr">Base Currency:</label>
                 <select id="baseCurr" name="baseCurr">
                     <option value="GBP">Great British Pounds</option>
@@ -24,7 +26,7 @@
                     <option value="JPY">Japenese Yen</option>
                     <option value="TRY">Turkish Lira</option>
                 </select>
-                <label for="conCurr">Base Currency:</label>
+                <label for="conCurr">Target Currency:</label>
                 <select id="conCurr" name="conCurr">
                     <option value="GBP">Great British Pounds</option>
                     <option value="USD">US Dollars</option>
@@ -34,14 +36,16 @@
                     <option value="TRY">Turkish Lira</option>
                 </select>
                 <label for="baseAmount">Starting Amount:</label>
-                <input name="baseAmount" type="number">
-                <button>Convert Now</button>
-            </form>
+                <input name="baseAmount" id="baseAmount" type="number">
+                <button type="button" onclick="UpdateConversion()">Convert Now</button>
+            
+            <p id="converted"></p>
         </div>
         <div class="exchange graph">
             //this shows historical rates for 14 days as of rn
         </div>
     </div>
     
+   
 </body>
 </html>
