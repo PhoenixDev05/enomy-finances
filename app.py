@@ -14,9 +14,14 @@ app = Flask(__name__)
 app.secret_key = "12345"
 UM = UserManager()
 audit = Auditing()
+user = User()
+#---------------------------
+#Curr Exchange
+#---------------------------
 currExchange = Exchange()
 currExchange.loadHistory()
 currExchange.getLatestRates()
+currExchange.loadFees()
 
 #-------------------------
 #DECORATED FUNCTIONS
@@ -47,7 +52,10 @@ def Login():
         print(password)
         if UM.authenticate(username, password):
             userData = UM.getUserData(username)
-            user = User(userData[0], userData[1], userData[2], userData[3])
+            user.username = userData[0]
+            user.fname =userData[1]
+            user.sname = userData[2]
+            user.accessLevel = userData[3]
             session["username"] = user.username
             session["fname"] = user.fname
             session["accessLevel"] = user.accessLevel
@@ -77,14 +85,14 @@ def exchange():
 @Login_Required
 def currExchangeAPI(startCurr, targetCurr, startAmount):
     
-    #startCurr = request.form["baseCurr"]
-    #targetCurr = request.form["conCurr"]
-    #startAmount = request.form["baseAmount"]
     currExchange.getBaseRate(startCurr)
     currExchange.getTargetRate(targetCurr)
     convertedValue = currExchange.conversion(startCurr, targetCurr, startAmount)
-    print(convertedValue)
-    return jsonify({"convertedValue": convertedValue})
+    feeInfo = currExchange.calcFees(startAmount, startCurr)
+    fee = feeInfo["charge"]
+    tax = feeInfo["tax"]
+    audit.addEvent(session["username"], "CurrExchange Transaction", "Sucessful")
+    return jsonify({"convertedValue": convertedValue, "fee": fee, "tax":tax})
 #logout
 @app.route("/logout")
 @Login_Required

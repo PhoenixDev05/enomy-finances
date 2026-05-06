@@ -1,0 +1,49 @@
+.inputBox
+{
+    width: 350px;
+    height: 300px;
+    border: 3px solid white;
+    padding: 10px;
+    background-color: white;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+.inputBox label
+{
+    width: 150px;
+    align-items: center;
+}
+.userInput
+{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+input
+{
+    
+    border-radius: 5px;
+    border: solid 2px;
+    width: 75px;
+}
+select
+{
+    
+    border-radius: 5px;
+    width: 150px;
+    border: solid 2px;
+}
+.buttonContainer
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+button
+{
+    border: solid 2px;
+    border-radius: 5px;
+}

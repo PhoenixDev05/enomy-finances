@@ -1,6 +1,6 @@
 class User:
-    def __init__(self, username, fname,sname, accessLevel):
-        self.username = username
-        self.fname = fname
-        self.sname = sname
-        self.accessLevel = accessLevel
+    def __init__(self):
+        self.username = ""
+        self.fname = ""
+        self.sname = ""
+        self.accessLevel = ""

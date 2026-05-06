@@ -1,0 +1,26 @@
+[
+    {
+        "feeID":1,
+        "description": "Up to 500",
+        "minAmount": 0.00,
+        "fee": 3.5
+    },
+    {
+        "feeID":2,
+        "description": "over 500",
+        "minAmount": 500.00,
+        "fee": 2.7
+    },
+    {
+        "feeID":3,
+        "description": "over 1500",
+        "minAmount": 1500.00,
+        "fee": 2.0
+    },
+    {
+        "feeID":4,
+        "description": "Over 2500",
+        "minAmount": 2500.00,
+        "fee": 1.5
+    }
+]

@@ -3,8 +3,8 @@ body
     margin: 0;
     display: flex;
     height: 100vh;
-    font-family: 'Courier New', Courier, monospace; /*change*/
-
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /*change*/
+    background-color: silver;
 }
 
 /*navbar*/
