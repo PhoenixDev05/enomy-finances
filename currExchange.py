@@ -1,5 +1,6 @@
 import json
-
+from datetime import datetime
+import requests
 #------------------------------
 #Uses GBP as the base currency
 #------------------------------
@@ -9,6 +10,34 @@ class Exchange():
         self.currentRates = []
         self.targetRate = 0
         self.fees = []
+
+    def getNewRateAPI(self):
+        #check rate for today not exist in system
+        #if not then do api call
+        #if api fail then use yesterday rate
+        now = datetime.now()
+        date = now.strftime("%Y-%m-%d")
+        if self.currentRates["date"] != date:
+            #try:
+            url = "https://openexchangerates.org/api/latest.json?app_id=abf02e1caee549a0bfbe55316805a42b"
+            response = requests.get(url).json()
+            print(response)
+            with open("data/exchangeHistory.json", "r") as f:
+                data = json.load(f)
+            
+            with open("data/todayRate.json", "w") as f:
+                json.dump(data, f, indent=4)
+
+            data.append({"base": "USD","date": date, "rates": response["rates"]})
+                
+            with open("data/exchangeHistory.json", "w") as f:
+                json.dump(data, f, indent=4)
+            
+            #except:
+                print("AHHHHHH")
+            
+            #then appends it to json file
+        
 
     def loadHistory(self):
         with open("data/exchangeHistory.json", "r") as f:
@@ -23,9 +52,10 @@ class Exchange():
 
     #depends on load history
     def getLatestRates(self):
-        dataSort = sorted(self.historicalRates, key=lambda i: i["date"])
+        with open("data/todayRate.json", "r") as f:
+            data = json.load(f)
 
-        latestData = dataSort[-1]
+        latestData = data
         self.currentRates = latestData
 
     def getTargetRate(self,target):
@@ -39,7 +69,7 @@ class Exchange():
         return self.baseRate
     
     def conversion(self, start, target, amount):
-        if start != "GBP":
+        if start != "USD":
             #convtert to gbp first
             GBPtostart = self.getBaseRate(start)
             GBPValue = int(amount) /GBPtostart
@@ -53,8 +83,8 @@ class Exchange():
         return conv 
     
     def calcFees(self, startAmount, startCurrency):
-            if startCurrency !="GBP":
-                startAmount = self.conversion(startCurrency, "GBP", int(startAmount))
+            if startCurrency !="USD":
+                startAmount = self.conversion(startCurrency, "USD", int(startAmount))
             for fee in self.fees:
                 if fee["minAmount"] <= int(startAmount):
                     #Calc Fee

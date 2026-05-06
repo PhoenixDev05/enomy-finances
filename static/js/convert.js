@@ -12,7 +12,7 @@ async function UpdateConversion() {
     const data = await response.json();
 
     //console.log(response)
-    document.getElementById("converted").innerText = `${amount} ${base} = ${data["convertedValue"]} ${target}\nFee: ${data["fee"]} GBP charged at ${data["tax"]}%`;
+    document.getElementById("converted").innerText = `${amount} ${base} = ${data["convertedValue"]} ${target}\nFee: ${data["fee"]} USD charged at ${data["tax"]}%`;
 }
 
 //document.getElementById("baseCurr").addEventListener("change", updateConversion);

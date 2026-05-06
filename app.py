@@ -22,6 +22,7 @@ currExchange = Exchange()
 currExchange.loadHistory()
 currExchange.getLatestRates()
 currExchange.loadFees()
+currExchange.getNewRateAPI()
 
 #-------------------------
 #DECORATED FUNCTIONS
