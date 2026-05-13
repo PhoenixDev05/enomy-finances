@@ -7,7 +7,7 @@ import requests
 class Exchange():
     def __init__(self):
         self.historicalRates = []
-        self.currentRates = []
+        self.currentRates = {}
         self.targetRate = 0
         self.fees = []
 
@@ -17,18 +17,19 @@ class Exchange():
         #if api fail then use yesterday rate
         now = datetime.now()
         date = now.strftime("%Y-%m-%d")
+        #print(self.currentRates["date"])
         if self.currentRates["date"] != date:
             #try:
-            url = "https://openexchangerates.org/api/latest.json?app_id=abf02e1caee549a0bfbe55316805a42b"
+            url = "https://api.exchangerate-api.com/v4/latest/GBP"
             response = requests.get(url).json()
             print(response)
+            with open("data/todayRate.json", "w") as f:
+                json.dump({"base": "GBP","date": date, "rates": response["rates"]}, f, indent=4)
+
             with open("data/exchangeHistory.json", "r") as f:
                 data = json.load(f)
-            
-            with open("data/todayRate.json", "w") as f:
-                json.dump(data, f, indent=4)
-
-            data.append({"base": "USD","date": date, "rates": response["rates"]})
+                        
+            data.append({"base": "GBP","date": date, "rates": response["rates"]})
                 
             with open("data/exchangeHistory.json", "w") as f:
                 json.dump(data, f, indent=4)
@@ -50,7 +51,6 @@ class Exchange():
             dataSort = sorted(data, key=lambda x:x["minAmount"], reverse=True)
             self.fees = dataSort
 
-    #depends on load history
     def getLatestRates(self):
         with open("data/todayRate.json", "r") as f:
             data = json.load(f)
@@ -69,7 +69,7 @@ class Exchange():
         return self.baseRate
     
     def conversion(self, start, target, amount):
-        if start != "USD":
+        if start != "GBP":
             #convtert to gbp first
             GBPtostart = self.getBaseRate(start)
             GBPValue = int(amount) /GBPtostart
@@ -83,17 +83,22 @@ class Exchange():
         return conv 
     
     def calcFees(self, startAmount, startCurrency):
-            if startCurrency !="USD":
-                startAmount = self.conversion(startCurrency, "USD", int(startAmount))
+            if startCurrency !="GBP":
+                startAmount_1 = self.conversion(startCurrency, "GBP", int(startAmount))
+            else:
+                startAmount_1 = startAmount
             for fee in self.fees:
-                if fee["minAmount"] <= int(startAmount):
+                
+                if fee["minAmount"] <= int(startAmount_1):
                     #Calc Fee
                     tax = fee["fee"]
-                    charge = (tax/100) * int(startAmount)
+                    charge = (tax/100) * int(startAmount_1)
                     charge = round(charge,2)
+                    total = int(startAmount) - self.conversion("GBP", startCurrency,charge)
                     success = True
-
+                    print(total)
             if success:
-                return {"charge": charge, "tax": tax}
+                return {"charge": charge, "tax": tax, "total": total}
             else:
                 return 0
+            

@@ -92,8 +92,24 @@ def currExchangeAPI(startCurr, targetCurr, startAmount):
     feeInfo = currExchange.calcFees(startAmount, startCurr)
     fee = feeInfo["charge"]
     tax = feeInfo["tax"]
+    total = feeInfo["total"]
     audit.addEvent(session["username"], "CurrExchange Transaction", "Sucessful")
-    return jsonify({"convertedValue": convertedValue, "fee": fee, "tax":tax})
+    return jsonify({"convertedValue": convertedValue, "fee": fee, "tax":tax, "total":total})
+
+@app.route("/api/history/<startCurr>/<targetCurr>",methods=["GET","POST"])
+@Login_Required
+def historyGraphAPI(startCurr, targetCurr):
+    #load history
+    history = currExchange.historicalRates
+    
+
+    data = {"dates":[entry["date"]for entry in history],
+            "rates":[entry["rates"][targetCurr]/entry["rates"][startCurr] for entry in history],
+            "base": startCurr,
+            "target": targetCurr}
+    
+    return data
+
 #logout
 @app.route("/logout")
 @Login_Required

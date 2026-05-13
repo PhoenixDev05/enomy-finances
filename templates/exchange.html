@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/exchange.css') }}">
     <script src="/static/js/convert.js" defer></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"defer></script>
 </head>
 <body>
     
@@ -18,7 +18,7 @@
                 <h3>Currency Conversion</h3>
                 <div class="userInput">
                 <label for="baseCurr">Base Currency:</label>
-                <select id="baseCurr" name="baseCurr">
+                <select id="baseCurr" name="baseCurr" onchange="loadGraph()">
                     <option value="GBP">Great British Pounds</option>
                     <option value="USD">US Dollars</option>
                     <option value="EUR">Euro</option>
@@ -27,7 +27,7 @@
                     <option value="TRY">Turkish Lira</option>
                 </select><br></div>
                 <div class="userInput">
-                <label for="conCurr">Target Currency:</label>
+                <label for="conCurr">Target Currency:</label onchange="loadGraph()">
                 <select id="conCurr" name="conCurr">
                     <option value="GBP">Great British Pounds</option>
                     <option value="USD">US Dollars</option>
@@ -45,8 +45,8 @@
                 </div>
             <p id="converted"></p>
         </div>
-        <div class="exchange graph">
-            //this shows historical rates for 14 days as of rn
+        <div class="exchangeGraph">
+            <canvas id="historyGraph" width="300px" height="100px"></canvas>
         </div>
     </div>
     
