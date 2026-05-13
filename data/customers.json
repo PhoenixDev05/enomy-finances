@@ -1,0 +1,62 @@
+[
+    {
+        "clientID": 1,
+        "firstName": "Ben",
+        "lastName": "Dover",
+        "email": "benmail@testeruk.com",
+        "phone": "0771234511",
+        "addressLine1": "1 DoverHouse",
+        "addressLine2": "",
+        "city": "London",
+        "postcode": "XX1 1XX",
+        "country": "UK" 
+    },
+    {
+    "clientID": 2,
+    "firstName": "Sarah",
+    "lastName": "Jenkins",
+    "email": "s.jenkins@webmail.co.uk",
+    "phone": "07855123987",
+    "addressLine1": "42 Orchard Lane",
+    "addressLine2": "Flat 3b",
+    "city": "Manchester",
+    "postcode": "M1 4BT",
+    "country": "UK"
+  },
+  {
+    "clientID": 3,
+    "firstName": "Arjun",
+    "lastName": "Sethi",
+    "email": "asethi99@provider.com",
+    "phone": "07411982334",
+    "addressLine1": "12 Silver Birch Road",
+    "addressLine2": "",
+    "city": "Birmingham",
+    "postcode": "B15 2TT",
+    "country": "UK"
+  },
+  {
+    "clientID": 4,
+    "firstName": "Fiona",
+    "lastName": "MacLeod",
+    "email": "f.macleod@scotnet.org",
+    "phone": "07122334455",
+    "addressLine1": "8 Highfield Crescent",
+    "addressLine2": "",
+    "city": "Edinburgh",
+    "postcode": "EH3 9AL",
+    "country": "UK"
+  },
+  {
+    "clientID": 5,
+    "firstName": "Marcus",
+    "lastName": "Vane",
+    "email": "mvane_creative@inbox.com",
+    "phone": "07900654321",
+    "addressLine1": "The Old Bakery",
+    "addressLine2": "Market Square",
+    "city": "Bristol",
+    "postcode": "BS1 6JX",
+    "country": "UK"
+  }
+]

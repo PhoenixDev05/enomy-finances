@@ -6,6 +6,7 @@ from users import User
 from usermanager import UserManager
 from audit import Auditing
 from currExchange import Exchange
+from customerManager import CustomerManager
 
 #----------------------------
 #CLASS INSTANCES AND APP INIT
@@ -23,6 +24,12 @@ currExchange.loadHistory()
 currExchange.getLatestRates()
 currExchange.loadFees()
 currExchange.getNewRateAPI()
+
+#----------------------------
+#CUSTOMERS
+#----------------------------
+cusData = CustomerManager()
+cusData.loadCustomerData()
 
 #-------------------------
 #DECORATED FUNCTIONS
@@ -81,18 +88,23 @@ def dashboard():
 def exchange():
             
     return render_template("exchange.html")
-    
-@app.route("/api/exchange/<startCurr>/<targetCurr>/<startAmount>/", methods=["GET", "POST"])
+
+
+#-----------------------
+#API CALLS
+#-----------------------
+@app.route("/api/exchange/<startCurr>/<targetCurr>/<startAmount>/<clientID>", methods=["GET", "POST"])
 @Login_Required
-def currExchangeAPI(startCurr, targetCurr, startAmount):
+def currExchangeAPI(startCurr, targetCurr, startAmount, clientID):
     
     currExchange.getBaseRate(startCurr)
     currExchange.getTargetRate(targetCurr)
     convertedValue = currExchange.conversion(startCurr, targetCurr, startAmount)
-    feeInfo = currExchange.calcFees(startAmount, startCurr)
+    feeInfo = currExchange.calcFees(startAmount, startCurr,convertedValue)
     fee = feeInfo["charge"]
     tax = feeInfo["tax"]
     total = feeInfo["total"]
+    cusData.saveCurrTransaction(clientID,startCurr,targetCurr,currExchange.conversion(startCurr, targetCurr,1),startAmount,fee,total)
     audit.addEvent(session["username"], "CurrExchange Transaction", "Sucessful")
     return jsonify({"convertedValue": convertedValue, "fee": fee, "tax":tax, "total":total})
 
@@ -109,6 +121,27 @@ def historyGraphAPI(startCurr, targetCurr):
             "target": targetCurr}
     
     return data
+
+#----------------------
+#Customer API Call
+#----------------------
+@app.route("/api/customers/get/curr", methods=["GET", "POST"])
+@Login_Required
+def getCustomers():
+    customers = cusData.customers
+
+    data = {"clientID": [entry["clientID"] for entry in customers], 
+            "firstName": [entry["firstName"] for entry in customers],
+            "lastName": [entry["lastName"] for entry in customers]}
+    return data
+
+@app.route("/api/customers/get/currTrans/<clientID>", methods=["GET","POST"])
+@Login_Required
+def getCurrTransactions(clientID):
+    transHistory = cusData.getCustomerCurrTransactions(clientID)
+    return jsonify(transHistory)
+
+
 
 #logout
 @app.route("/logout")

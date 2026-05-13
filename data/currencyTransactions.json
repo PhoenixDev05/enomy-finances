@@ -1,0 +1,178 @@
+[
+    {
+        "transID": 1,
+        "clientID": "1",
+        "date": "2026-05-13",
+        "baseCurr": "GBP",
+        "targetCurr": "USD",
+        "targetRate": 1.35,
+        "startAmount": "1000",
+        "fee": 35.0,
+        "totalAmount": 1315
+    },
+    {
+        "transID": 2,
+        "clientID": "1",
+        "date": "2026-05-13",
+        "baseCurr": "GBP",
+        "targetCurr": "JPY",
+        "targetRate": 213.35,
+        "startAmount": "1000",
+        "fee": 35.0,
+        "totalAmount": 213315
+    },
+    {
+        "transID": 3,
+        "clientID": "1",
+        "date": "2026-05-13",
+        "baseCurr": "USD",
+        "targetCurr": "BRL",
+        "targetRate": 4.91,
+        "startAmount": "1000",
+        "fee": 25.9,
+        "totalAmount": 4877.25
+    },
+    {
+        "transID": 4,
+        "clientID": "1",
+        "date": "2026-05-13",
+        "baseCurr": "USD",
+        "targetCurr": "BRL",
+        "targetRate": 4.91,
+        "startAmount": "1000",
+        "fee": 25.9,
+        "totalAmount": 4877.25
+    },
+    {
+        "transID": 5,
+        "clientID": "1",
+        "date": "2026-05-13",
+        "baseCurr": "USD",
+        "targetCurr": "BRL",
+        "targetRate": 4.91,
+        "startAmount": "1000",
+        "fee": 25.9,
+        "totalAmount": 4877.25
+    },
+    {
+        "transID": 6,
+        "clientID": "1",
+        "date": "2026-05-13",
+        "baseCurr": "USD",
+        "targetCurr": "BRL",
+        "targetRate": 4.91,
+        "startAmount": "1000",
+        "fee": 25.9,
+        "totalAmount": 4877.25
+    },
+    {
+        "transID": 7,
+        "clientID": "1",
+        "date": "2026-05-13",
+        "baseCurr": "USD",
+        "targetCurr": "BRL",
+        "targetRate": 4.91,
+        "startAmount": "1000",
+        "fee": 25.9,
+        "totalAmount": 4877.25
+    },
+    {
+        "transID": 8,
+        "clientID": "1",
+        "date": "2026-05-13",
+        "baseCurr": "USD",
+        "targetCurr": "BRL",
+        "targetRate": 4.91,
+        "startAmount": "1000",
+        "fee": 25.9,
+        "totalAmount": 4877.25
+    },
+    {
+        "transID": 9,
+        "clientID": "1",
+        "date": "2026-05-13",
+        "baseCurr": "USD",
+        "targetCurr": "BRL",
+        "targetRate": 4.91,
+        "startAmount": "1000",
+        "fee": 25.9,
+        "totalAmount": 4877.25
+    },
+    {
+        "transID": 10,
+        "clientID": "1",
+        "date": "2026-05-13",
+        "baseCurr": "USD",
+        "targetCurr": "BRL",
+        "targetRate": 4.91,
+        "startAmount": "1000",
+        "fee": 25.9,
+        "totalAmount": 4877.25
+    },
+    {
+        "transID": 11,
+        "clientID": "1",
+        "date": "2026-05-13",
+        "baseCurr": "USD",
+        "targetCurr": "BRL",
+        "targetRate": 4.91,
+        "startAmount": "1000",
+        "fee": 25.9,
+        "totalAmount": 4877.25
+    },
+    {
+        "transID": 12,
+        "clientID": "1",
+        "date": "2026-05-13",
+        "baseCurr": "USD",
+        "targetCurr": "BRL",
+        "targetRate": 4.91,
+        "startAmount": "1000",
+        "fee": 25.9,
+        "totalAmount": 4877.25
+    },
+    {
+        "transID": 13,
+        "clientID": "1",
+        "date": "2026-05-13",
+        "baseCurr": "USD",
+        "targetCurr": "BRL",
+        "targetRate": 4.91,
+        "startAmount": "1000",
+        "fee": 25.9,
+        "totalAmount": 4877.25
+    },
+    {
+        "transID": 14,
+        "clientID": "1",
+        "date": "2026-05-13",
+        "baseCurr": "USD",
+        "targetCurr": "BRL",
+        "targetRate": 4.91,
+        "startAmount": "1000",
+        "fee": 25.9,
+        "totalAmount": 4877.25
+    },
+    {
+        "transID": 15,
+        "clientID": "2",
+        "date": "2026-05-13",
+        "baseCurr": "GBP",
+        "targetCurr": "USD",
+        "targetRate": 1.35,
+        "startAmount": "1000",
+        "fee": 35.0,
+        "totalAmount": 1315
+    },
+    {
+        "transID": 16,
+        "clientID": "2",
+        "date": "2026-05-13",
+        "baseCurr": "GBP",
+        "targetCurr": "BRL",
+        "targetRate": 6.63,
+        "startAmount": "2000",
+        "fee": 70.0,
+        "totalAmount": 13190
+    }
+]

@@ -14,7 +14,16 @@
     {% include 'navbar.html'%}
     <div class="content">
         <h2>Enomy Finances | Exchange</h2>
+        <div class="row">
+        
+        
         <div class="inputBox">
+            <div class="customerLink">
+                <label for="customerName">Customer: </label>
+                <select id="customerName">
+                    <option value="0">Select Customer</option>
+                </select>
+            </div>
                 <h3>Currency Conversion</h3>
                 <div class="userInput">
                 <label for="baseCurr">Base Currency:</label>
@@ -44,6 +53,23 @@
                     <br><button type="button" id="buttSub" onclick="UpdateConversion()">Convert Now</button>
                 </div>
             <p id="converted"></p>
+        </div>
+        <div class="historyTrans">
+            <table>
+                <thead>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Start Curr</th>
+                    <th>Target Curr</th>
+                    <th>Rate</th>
+                    <th>Amount</th>
+                    <th>Fee</th>
+                    <th>Total</th>
+                </thead>
+                    <tbody id="historyTable"></tbody>
+                
+            </table>
+        </div>
         </div>
         <div class="exchangeGraph">
             <canvas id="historyGraph" width="300px" height="100px"></canvas>

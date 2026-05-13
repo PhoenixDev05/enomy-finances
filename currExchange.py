@@ -82,7 +82,7 @@ class Exchange():
         conv = round(conv,2)
         return conv 
     
-    def calcFees(self, startAmount, startCurrency):
+    def calcFees(self, startAmount, startCurrency,convAmount):
             if startCurrency !="GBP":
                 startAmount_1 = self.conversion(startCurrency, "GBP", int(startAmount))
             else:
@@ -94,7 +94,7 @@ class Exchange():
                     tax = fee["fee"]
                     charge = (tax/100) * int(startAmount_1)
                     charge = round(charge,2)
-                    total = int(startAmount) - self.conversion("GBP", startCurrency,charge)
+                    total = int(convAmount) - self.conversion("GBP", startCurrency,charge)
                     success = True
                     print(total)
             if success:
