@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 class UserManager:
     def __init__(self):
         self.users = []
@@ -30,3 +31,37 @@ class UserManager:
         with open("data/users.json","r") as file:
             users = json.load(file)
             return users
+        
+    def getUserDataSecure(self):
+        safeData = []
+        for user in self.users:
+            safeData.append({"staffID": user["staffID"], "username": user["username"], "firstName": user["firstName"],
+                             "lastName": user["lastName"], "email": user["email"], "created": user["created"], "lastLogin": user["lastLogin"]})
+            
+        return safeData
+    
+    def modifyUser(self, staffID,username, firstName,lastName,email,password):
+        for user in self.users:
+            if str(user["staffID"]) == str(staffID):
+                user["username"] = username
+                user["firstName"] = firstName
+                user["lastName"] = lastName
+                user["email"] = email
+                if password != "null":
+                    user["password"] = password
+                self.saveUserData()
+
+        return True
+    
+    def addUser(self, username, firstName, lastName, email, password):
+        creation = datetime.now().strftime("%Y-%m-%d %H:%M")
+        newStaffID = self.users[-1]["staffID"] +1
+        newDict = {"staffID": newStaffID, "username":username, "firstName": firstName, "lastName": lastName,
+                   "email": email, "password": password,"accessLevel":0, "created": creation, "lastLogin": ""}
+        
+        self.users.append(newDict)
+        self.saveUserData()
+    
+    def saveUserData(self):
+        with open("data/users.json", "w") as f:
+            json.dump(self.users, f, indent=4)

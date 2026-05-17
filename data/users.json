@@ -2,23 +2,34 @@
     {
         "staffID": 1,
         "username": "admin",
-        "firstName":"adam",
+        "firstName": "adam",
         "lastName": "Minister",
-        "email": "tman@tman.com",
+        "email": "admin@admin.com",
         "password": "admin",
         "accessLevel": 1,
-        "created": "29/04/2026 10:42",
-        "lastLogin": "29/04/2026 10:42"
+        "created": "2026-04-29 10:42",
+        "lastLogin": "2026-04-29 10:42"
     },
     {
         "staffID": 2,
         "username": "TestMan",
-        "firstName":"Test",
+        "firstName": "Test",
         "lastName": "Man",
         "email": "tman@tman.com",
         "password": "password",
         "accessLevel": 0,
-        "created": "29/04/2026 10:42",
-        "lastLogin": "29/04/2026 10:42"
+        "created": "2026-04-29 10:42",
+        "lastLogin": "2026-04-29 10:42"
+    },
+    {
+        "staffID": 3,
+        "username": "testuser123",
+        "firstName": "test",
+        "lastName": "user",
+        "email": "email@email.com",
+        "password": "password",
+        "accessLevel": 0,
+        "created": "2026-05-17 15:51",
+        "lastLogin": ""
     }
 ]

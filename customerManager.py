@@ -61,9 +61,7 @@ class CustomerManager:
                 #then dump the update
                 self.saveCustomerUpdate()
         return True
-    
-
-                
+                   
 #ADD NEW CUSTOMER
 
     def addCustomer(self,firstName,lastName,email,phone,addr1,addr2,city,postcode,country):
@@ -84,4 +82,3 @@ class CustomerManager:
     
         self.customers.append(newDict)
         self.saveCustomerUpdate()
-

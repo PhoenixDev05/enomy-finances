@@ -167,6 +167,34 @@ def addNewCustomerRecord(firstName,lastName,email,phone,addr1,addr2,city,postcod
     cusData.addCustomer(firstName,lastName,email,phone,addr1,addr2,city,postcode,country)
     return jsonify({"success": True})
 
+#---------------------------
+#ADMIN PANEL
+#--------------------------
+@app.route("/admin")
+@Login_Required
+def admin():
+    return render_template("admin.html")
+
+#----------------------------
+#ADMIN API CALLS
+#----------------------------
+@app.route("/api/users/getsecure")
+@Login_Required
+def getSecure():
+    data = UM.getUserDataSecure()
+    return jsonify(data)
+
+@app.route("/api/users/modify/<staffID>/<username>/<firstName>/<lastName>/<email>/<password>")
+@Login_Required
+def modifyStaff(staffID,username,firstName,lastName,email,password):
+    UM.modifyUser(staffID,username,firstName,lastName,email,password)
+    return jsonify({"success": True})
+
+@app.route("/api/users/add/<username>/<firstName>/<lastName>/<email>/<password>")
+@Login_Required
+def addNewUser(username,firstName,lastName,email,password):
+    UM.addUser(username,firstName,lastName,email,password)
+    return jsonify({"success": True})
 
 #logout
 @app.route("/logout")
@@ -175,7 +203,6 @@ def logout():
     session.clear()
     UM.logout()
     return redirect("/")
-    
 
 #run application
 if __name__ == "__main__":
