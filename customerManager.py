@@ -67,6 +67,7 @@ class CustomerManager:
 #ADD NEW CUSTOMER
 
     def addCustomer(self,firstName,lastName,email,phone,addr1,addr2,city,postcode,country):
+        addr2 = "" if addr2== "null" else addr2
     #Get the new ID
     #then append to the list then dump ;)
         newClientID = self.customers[-1]["clientID"] +1

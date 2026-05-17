@@ -161,6 +161,12 @@ def modifyCustomerRecord(clientID,firstName,lastName,email,phone,addr1,addr2,cit
     cusData.updateCustomer(clientID,firstName,lastName,email,phone,addr1,addr2,city,postcode,country)
     return jsonify({"success": True})
 
+@app.route("/api/customers/add/<firstName>/<lastName>/<email>/<phone>/<addr1>/<addr2>/<city>/<postcode>/<country>", methods=["POST", "GET"])
+@Login_Required
+def addNewCustomerRecord(firstName,lastName,email,phone,addr1,addr2,city,postcode,country):
+    cusData.addCustomer(firstName,lastName,email,phone,addr1,addr2,city,postcode,country)
+    return jsonify({"success": True})
+
 
 #logout
 @app.route("/logout")

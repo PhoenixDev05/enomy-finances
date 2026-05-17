@@ -58,5 +58,17 @@
         "city": "Bristol",
         "postcode": "BS1 6JX",
         "country": "UK"
+    },
+    {
+        "clientID": 6,
+        "firstName": "jon",
+        "lastName": "Jones",
+        "email": "jonmail@jonmai.com",
+        "phone": "0771234511",
+        "addressLine1": "1 Jon Ln",
+        "addressLine2": "",
+        "city": "London",
+        "postcode": "XX1 1XX",
+        "country": "UK"
     }
 ]
