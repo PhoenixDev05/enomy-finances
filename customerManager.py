@@ -31,3 +31,56 @@ class CustomerManager:
                     userData.append(item)
                     
         return userData
+    
+    def getCustomers(self):
+        return self.customers
+    
+    #------------------------
+    #Customer CRUD operation
+    #------------------------
+
+    def saveCustomerUpdate(self):
+        with open("data/customers.json", "w") as f:
+            json.dump(self.customers, f, indent=4)
+
+
+    def updateCustomer(self, clientID, firstName,lastName,email,phone,addr1,addr2,city,postcode,country):
+        addr2 = "" if addr2== "null" else addr2
+        for customer in self.customers:
+            if str(customer["clientID"]) == str(clientID):
+                #needs to update the customer
+                customer["firstName"] = firstName
+                customer["lastName"] = lastName
+                customer["email"] = email
+                customer["phone"] = phone
+                customer["addressLine1"] = addr1
+                customer["addressLine2"] = addr2
+                customer["city"] = city
+                customer["postcode"] = postcode
+                customer["country"] = country
+                #then dump the update
+                self.saveCustomerUpdate()
+        return True
+    
+
+                
+#ADD NEW CUSTOMER
+
+    def addCustomer(self,firstName,lastName,email,phone,addr1,addr2,city,postcode,country):
+    #Get the new ID
+    #then append to the list then dump ;)
+        newClientID = self.customers[-1]["clientID"] +1
+        newDict = {"clientID": newClientID,
+               "firstName": firstName,
+               "lastName": lastName,
+               "email": email,
+               "phone": phone,
+               "addressLine1": addr1,
+               "addressLine2": addr2,
+               "city": city,
+               "postcode": postcode,
+               "country": country}
+    
+        self.customers.append(newDict)
+        self.saveCustomerUpdate()
+

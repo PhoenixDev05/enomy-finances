@@ -89,6 +89,11 @@ def exchange():
             
     return render_template("exchange.html")
 
+@app.route("/customers")
+@Login_Required
+def customerView():
+    return render_template("customers.html")
+
 
 #-----------------------
 #API CALLS
@@ -141,6 +146,20 @@ def getCurrTransactions(clientID):
     transHistory = cusData.getCustomerCurrTransactions(clientID)
     return jsonify(transHistory)
 
+#load customers
+@app.route("/api/customers/get/all", methods=["GET", "POST"])
+@Login_Required
+def getCustomerData():
+    data = cusData.getCustomers()
+    print(data)
+    return jsonify(data)
+
+#modify btn
+@app.route("/api/customers/modify/<clientID>/<firstName>/<lastName>/<email>/<phone>/<addr1>/<addr2>/<city>/<postcode>/<country>")
+@Login_Required
+def modifyCustomerRecord(clientID,firstName,lastName,email,phone,addr1,addr2,city,postcode,country):
+    cusData.updateCustomer(clientID,firstName,lastName,email,phone,addr1,addr2,city,postcode,country)
+    return jsonify({"success": True})
 
 
 #logout

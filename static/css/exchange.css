@@ -100,7 +100,7 @@ td
     flex:2;
     background-color: white;
     border-radius: 8px;
-    max-height: 325px;
+    max-height: 300px;
     overflow-y: auto;
     position: relative;
 }

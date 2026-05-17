@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enomy Finances | Customers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/customers.css') }}">
+    <script src="static/js/customers.js" defer></script>
+
+</head>
+<body>
+    {% include 'navbar.html'%}
+    <div class="content">
+        <h2>EnomyFinances | Customers</h2>
+        <div class="row">
+            <div class="customerTable">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>CusID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Contact</th>
+                            <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody id="cusData">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="cusDetails">
+                <h3>Customer Info</h3>
+                <div class="cusForm">
+                    <div class="recordRow">
+                        <label for="cusID">Customer ID:</label>
+                        <input type="text" name="cusID" readonly="true">
+                    </div>
+                    <div class="recordRow">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" name="firstName">
+                    </div>
+                    <div class="recordRow">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" name="lastName">
+                    </div>
+                    <div class="recordRow">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email">
+                    </div>
+                    <div class="recordRow">
+                        <label for="phoneNum">Phone:</label>
+                        <input type="text" name="phoneNum"> 
+                    </div>
+                    <div class="recordRow">
+                        <label for="addressLine1">Address Line 1:</label>
+                        <input type="text" name="addressLine1">
+                    </div>
+                    <div class="recordRow">
+                        <label for="addressLine2">Address Line 2:</label>
+                        <input type="text" name="addressLine2">
+                    </div>
+                    <div class="recordRow">
+                        <label for="addressLine2">City:</label>
+                        <input type="text" name="city">
+                    </div>
+                    <div class="recordRow">
+                        <label for="postcode">Postcode:</label>
+                        <input type="text" name="postcode">
+                    </div>
+                    <div class="recordRow">
+                        <label for="country">Country:</label>
+                        <input type="text" name="country">
+                    </div>
+                    <button id="modButton">Modify</button>
+                    <button id="addButton">Add</button>
+                    <button id="clearButton" >Clear Entries</button>
+                    <br>
+                    <p id="message"></p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
