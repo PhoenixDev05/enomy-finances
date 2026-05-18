@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enomy Finances | Investments</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/investments.css') }}">
+    <script src="static/js/investments.js" defer></script>
+
+</head>
+<body>
+    {% include 'navbar.html'%}
+    <div class="content">
+        <h2>Enomy Finances | Investments</h2>
+        <div class="row">
+            <div class="investTable">
+                <table>
+                    <thead>
+                        <th>PlanID</th>
+                        <th>Name</th>
+                        <th>Desc</th>
+                        <th>Max Year</th>
+                        <th>Min Lump</th>
+                        <th>Min Monthly</th>
+                        <th>minReturn(%)</th>
+                        <th>maxReturn(%)</th>
+                        <th>TaxRate | Threshold</th>
+                        <th>Fee (%)</th>
+                    
+                    </thead>
+                    <tbody id="planTable">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="inputBox">
+                <h3>Quote Maker</h3>
+                    <div class="recordRow">
+                        <label for="cusCombo">Customer:</label>
+                        <select name="cusCombo" id="customerName">
+                            <option value="0">Select Customer</option>
+                        </select>
+                    </div>
+                <div class="recordRow">
+                    <label for="initialAmount">Initial Amount</label>
+                    <input type="number" name="monthlyAmount" id="initialAmount">
+                </div>
+                <div class="recordRow">
+                    <label for="monthlyAmount">Monthly Amount:</label>
+                    <input type="number" name="monthlyAmount" id="monthlyAmount">
+                </div>
+                <div class="recordRow">
+                    <label for="planCombo">Plan:</label>
+                    <select name=planCombo id="planCombo">
+                        <option value="0">Select Plan</option>
+                    </select>
+                </div>
+                <div class="recordRow">
+                    <button id="generateQuote">Generate Now</button>
+                </div>
+                <div class="recordRow">
+                    <p id="message"></p>
+                </div>
+            </div>
+            <div class="quoteTable">
+                <table>
+                    <thead>
+                        <tr>
+                            <th rowspan="3">Initial Amount</th>
+                            <th rowspan="3">Lump Sum</th>
+                            <th colspan="7">Year 1</th> <th colspan="7">Year 5</th><th colspan="7">Year 10</th>
+                        </tr>
+                        <tr>
+                            <th>Min return</th>
+                            <th>Max return</th>
+                            <th>Min profit</th>
+                            <th>Max profit</th>
+                            <th>Min fees</th>
+                            <th>Max taxes</th>
+                            <th>Min return</th>
+                            <th>Max return</th>
+                            <th>Min profit</th>
+                            <th>Max profit</th>
+                            <th>Min fees</th>
+                            <th>Max taxes</th>
+                            <th>Min return</th>
+                            <th>Max return</th>
+                            <th>Min profit</th>
+                            <th>Max profit</th>
+                            <th>Min fees</th>
+                            <th>Max taxes</th>
+                        </tr>
+                        
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

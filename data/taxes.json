@@ -1,0 +1,17 @@
+[
+    {
+        "taxCode": 1,
+        "taxRate": [0],
+        "threshold": 0
+    },
+    {
+        "taxCode": 2,
+        "taxRate": [10],
+        "threshold": 12000
+    },
+    {
+        "taxCode": 3,
+        "taxRate": [10,20],
+        "threshold": [12000,40000]
+    }
+]

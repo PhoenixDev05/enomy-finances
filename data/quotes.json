@@ -1,0 +1,73 @@
+[
+    {
+        "quoteID": 1,
+        "clientID": 1,
+        "planID": 1,
+        "initialAmount": 100,
+        "monthlyAmount": 100,
+        "dateMade": "2026-05-17",
+        "projections": 
+        [
+            {
+                "year":1,
+                "returns": 
+                [
+                    {
+                        "type": "min",
+                        "return": 1000,
+                        "profit": 200,
+                        "fees": 10,
+                        "taxes": 10
+                    },
+                    {
+                        "type": "max",
+                        "return": 1000,
+                        "profit": 200,
+                        "fees": 10,
+                        "taxes": 10
+                    }
+                ]
+            },
+            {
+                "year":5,
+                "returns": 
+                [
+                    {
+                        "type": "min",
+                        "return": 1000,
+                        "profit": 200,
+                        "fees": 10,
+                        "taxes": 10
+                    },
+                    {
+                        "type": "max",
+                        "return": 1000,
+                        "profit": 200,
+                        "fees": 10,
+                        "taxes": 10
+                    }
+                ]
+            },
+            {
+                "year":10,
+                "returns": 
+                [
+                    {
+                        "type": "min",
+                        "return": 1000,
+                        "profit": 200,
+                        "fees": 10,
+                        "taxes": 10
+                    },
+                    {
+                        "type": "max",
+                        "return": 1000,
+                        "profit": 200,
+                        "fees": 10,
+                        "taxes": 10
+                    }
+                ]
+            }
+        ]   
+    }
+]

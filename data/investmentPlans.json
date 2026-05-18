@@ -1,0 +1,38 @@
+[
+    {
+        "planID": 1,
+        "planName": "Basic Savings Plan",
+        "desc": "The most basic savings ever!",
+        "maxInvestYr": 20000,
+        "minMonthly": 50,
+        "minLump": 0,
+        "minReturnRate": 1.2,
+        "maxReturnRate": 2.4,
+        "taxCode": 1,
+        "monthlyFeeRate": 0.25
+    },
+    {
+        "planID": 2,
+        "planName": "Savings Plan Plus",
+        "desc": "savings +",
+        "maxInvestYr": 30000,
+        "minMonthly": 50,
+        "minLump": 300,
+        "minReturnRate": 3,
+        "maxReturnRate": 5.5,
+        "taxCode": 2,
+        "monthlyFeeRate": 0.3
+    },
+    {
+        "planID": 3,
+        "planName": "Managed Stock Investments",
+        "desc": "Money, Money and More money",
+        "maxInvestYr": 0,
+        "minMonthly": 150,
+        "minLump": 1000,
+        "minReturnRate": 4,
+        "maxReturnRate": 23,
+        "taxCode": 3,
+        "monthlyFeeRate": 1.3
+    }
+]

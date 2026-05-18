@@ -7,6 +7,7 @@ from usermanager import UserManager
 from audit import Auditing
 from currExchange import Exchange
 from customerManager import CustomerManager
+from investmentManager import investments
 
 #----------------------------
 #CLASS INSTANCES AND APP INIT
@@ -24,6 +25,13 @@ currExchange.loadHistory()
 currExchange.getLatestRates()
 currExchange.loadFees()
 currExchange.getNewRateAPI()
+
+#----------------------------
+#INVESTMENT MANAGER
+#----------------------------
+IM = investments()
+IM.loadPlans()
+IM.loadTaxes()
 
 #----------------------------
 #CUSTOMERS
@@ -203,6 +211,33 @@ def logout():
     session.clear()
     UM.logout()
     return redirect("/")
+
+#------------------------
+#INVESTMENTS
+#------------------------
+@app.route("/investments")
+@Login_Required
+def invest():
+    return render_template("investments.html")
+
+#INVESTMENT API CALL
+@app.route("/api/invest/get/plans")
+@Login_Required
+def getInvestmentPlans():
+    data = IM.getPlans()
+    return jsonify(data)
+
+@app.route("/api/invest/validate/<planID>/<initialAmount>/<monthlyAmount>")
+@Login_Required
+def validationChecker(planID,initialAmount, monthlyAmount):
+    response = IM.validateValues(planID, initialAmount, monthlyAmount)
+    return jsonify(response)
+
+@app.route("/api/invest/quote/<clientID>/<planID>/<initialAmount>/<monthlyAmount>")
+@Login_Required
+def generateQuote(clientID,planID,initialAmount,monthlyAmount):
+    response = IM.quoteMaker(clientID, planID,initialAmount,monthlyAmount)
+    return jsonify(response)
 
 #run application
 if __name__ == "__main__":
