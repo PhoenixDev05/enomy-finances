@@ -1,8 +1,10 @@
 import json
+from datetime import datetime
 class investments:
     def __init__(self):
         self.plans = []
         self.taxes = []
+        self.quotes = []
 
 
     def loadPlans(self):
@@ -105,11 +107,35 @@ class investments:
                 "maxTax":round(maxTax,2),
                 "minTax": round(minTax,2)
             }
-            #self.saveQuote(clientID, output)
+        self.saveQuote(clientID,planID,initialAmount, monthlyAmount, output)
         return output
-            #DATA RETURN
-            #SAVE DATA TO QUOTE
 
-    #def loadQuotes(self):
+    def loadQuotes(self):
+        with open("data/quotes.json") as f:
+            self.quotes = json.load(f)
 
-    #def saveQuote(self,clientID, output):
+    def saveQuote(self,clientID, planID,initialAmount, monthlyAmount, output):
+        lastQuote = self.quotes[-1]
+        today = datetime.now().strftime("%Y-%m-%d")
+        newQuoteID = lastQuote["quoteID"] +1
+        data = []
+        for year,yearData in output.items():
+            print(year)
+            data.append({
+                "year": year, "returns": [{"type": "min", "return": yearData["minReturn"], "profit": yearData["minProfit"], "fees": yearData["fee"], "tax": yearData["minTax"]},
+                                                  {"type": "max", "return": yearData["maxReturn"], "profit": yearData["maxProfit"], "fees": yearData["fee"], "tax": yearData["maxTax"]}]})
+        quote = {"quoteID": newQuoteID, "clientID": int(clientID), "planID": int(planID), "initialAmount": initialAmount, "monthlyAmount": monthlyAmount,
+                 "dateMade": today, "projections":data}
+        
+        self.quotes.append(quote)
+
+        with open("data/quotes.json","w") as f:
+            json.dump(self.quotes,f, indent=4)
+
+    def getQuotes(self, clientID):
+        data = []
+        for quote in self.quotes:
+            if quote["clientID"] == int(clientID):
+                data.append(quote)
+
+        return data

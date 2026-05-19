@@ -32,6 +32,7 @@ currExchange.getNewRateAPI()
 IM = investments()
 IM.loadPlans()
 IM.loadTaxes()
+IM.loadQuotes()
 
 #----------------------------
 #CUSTOMERS
@@ -152,6 +153,7 @@ def getCustomers():
 @Login_Required
 def getCurrTransactions(clientID):
     transHistory = cusData.getCustomerCurrTransactions(clientID)
+    audit.addEvent(session[user], "Customer Transactions Collected", "Success")
     return jsonify(transHistory)
 
 #load customers
@@ -167,12 +169,14 @@ def getCustomerData():
 @Login_Required
 def modifyCustomerRecord(clientID,firstName,lastName,email,phone,addr1,addr2,city,postcode,country):
     cusData.updateCustomer(clientID,firstName,lastName,email,phone,addr1,addr2,city,postcode,country)
+    audit.addEvent(session[user], f"CUSTOMER MODIFIED WITH ID: {clientID}", "SUCCESS")
     return jsonify({"success": True})
 
 @app.route("/api/customers/add/<firstName>/<lastName>/<email>/<phone>/<addr1>/<addr2>/<city>/<postcode>/<country>", methods=["POST", "GET"])
 @Login_Required
 def addNewCustomerRecord(firstName,lastName,email,phone,addr1,addr2,city,postcode,country):
     cusData.addCustomer(firstName,lastName,email,phone,addr1,addr2,city,postcode,country)
+    audit.addEvent(session[user], "NEW CUSTOMER ADDED", "Success")
     return jsonify({"success": True})
 
 #---------------------------
@@ -196,12 +200,14 @@ def getSecure():
 @Login_Required
 def modifyStaff(staffID,username,firstName,lastName,email,password):
     UM.modifyUser(staffID,username,firstName,lastName,email,password)
+    audit.addEvent(session[user], f"USER OF ID:{staffID}", "Data MODIFICATION SUCCESSFUL")
     return jsonify({"success": True})
 
 @app.route("/api/users/add/<username>/<firstName>/<lastName>/<email>/<password>")
 @Login_Required
 def addNewUser(username,firstName,lastName,email,password):
     UM.addUser(username,firstName,lastName,email,password)
+    audit.addEvent(session[user], "NEW USER ADDED", "Successful Addition of user")
     return jsonify({"success": True})
 
 #logout
@@ -237,6 +243,14 @@ def validationChecker(planID,initialAmount, monthlyAmount):
 @Login_Required
 def generateQuote(clientID,planID,initialAmount,monthlyAmount):
     response = IM.quoteMaker(clientID, planID,initialAmount,monthlyAmount)
+    audit.addEvent(session[user], "Quote Generation", "Successful Quote Made")
+    return jsonify(response)
+
+@app.route("/api/invest/get/quote/<clientID>")
+@Login_Required
+def grabQuotes(clientID):
+    response = IM.getQuotes(clientID)
+    audit.addEvent(session[user], "Quotes Grabbed for user", "Successful Quote Grab")
     return jsonify(response)
 
 #run application

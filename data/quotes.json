@@ -6,12 +6,10 @@
         "initialAmount": 100,
         "monthlyAmount": 100,
         "dateMade": "2026-05-17",
-        "projections": 
-        [
+        "projections": [
             {
-                "year":1,
-                "returns": 
-                [
+                "year": 1,
+                "returns": [
                     {
                         "type": "min",
                         "return": 1000,
@@ -29,9 +27,8 @@
                 ]
             },
             {
-                "year":5,
-                "returns": 
-                [
+                "year": 5,
+                "returns": [
                     {
                         "type": "min",
                         "return": 1000,
@@ -49,9 +46,8 @@
                 ]
             },
             {
-                "year":10,
-                "returns": 
-                [
+                "year": 10,
+                "returns": [
                     {
                         "type": "min",
                         "return": 1000,
@@ -68,6 +64,73 @@
                     }
                 ]
             }
-        ]   
+        ]
+    },
+    {
+        "quoteID": 2,
+        "clientID": 1,
+        "planID": 1,
+        "initialAmount": 1000.0,
+        "monthlyAmount": 1000.0,
+        "dateMade": "2026-05-19",
+        "projections": [
+            {
+                "year": 1,
+                "returns": [
+                    {
+                        "type": "min",
+                        "return": 13978.45,
+                        "profit": 978.45,
+                        "fees": 30.0,
+                        "tax": 0.0
+                    },
+                    {
+                        "type": "max",
+                        "return": 15047.06,
+                        "profit": 2047.06,
+                        "fees": 30.0,
+                        "tax": 0.0
+                    }
+                ]
+            },
+            {
+                "year": 5,
+                "returns": [
+                    {
+                        "type": "min",
+                        "return": 89182.92,
+                        "profit": 28182.92,
+                        "fees": 150.0,
+                        "tax": 0.0
+                    },
+                    {
+                        "type": "max",
+                        "return": 135379.33,
+                        "profit": 74379.33,
+                        "fees": 150.0,
+                        "tax": 0.0
+                    }
+                ]
+            },
+            {
+                "year": 10,
+                "returns": [
+                    {
+                        "type": "min",
+                        "return": 269574.07,
+                        "profit": 148574.07,
+                        "fees": 300.0,
+                        "tax": 0.0
+                    },
+                    {
+                        "type": "max",
+                        "return": 692988.46,
+                        "profit": 571988.46,
+                        "fees": 300.0,
+                        "tax": 0.0
+                    }
+                ]
+            }
+        ]
     }
 ]

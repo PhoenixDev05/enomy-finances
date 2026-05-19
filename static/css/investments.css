@@ -53,6 +53,7 @@ tbody
     border: 1px solid #ccc;
     display: flex;
     flex-direction: column; 
+    max-width:400px;
 }
 
 .inputBox label {
@@ -93,7 +94,7 @@ tbody
     max-height: 300px;
     overflow-y: auto;
     overflow-x: auto;
-    max-width: 700px;
+    max-width: 1200px;
     width: 100%;
 }
 .row {
@@ -104,4 +105,28 @@ tbody
     margin-top: 20px;
     width: 100%; 
     box-sizing: border-box;
+}
+#tableData td
+{
+    border-right: solid 1px black;
+}
+.quoteTable thead tr:first-child th {
+    top: 0;
+    z-index: 12; 
+}
+
+.quoteTable thead tr:nth-child(2) th {
+    top: 41px;   
+    z-index: 11;
+}
+.quoteTable th
+{
+    border-right: 2px black solid;
+}
+
+.recommended
+{
+    background-color: #aaf7d4;
+    border-left: 5px solid #0f5132;
+    font-weight: 500;
 }
