@@ -148,8 +148,13 @@ for (const quote of data) {
                 ${quote.dateMade}
                 ${badge}
             </td>
+           
             <td>£${quote.initialAmount.toFixed(2)}</td>
             <td>£${quote.monthlyAmount.toFixed(2)}</td>
+            <td>
+                ${quote.planID}
+            </td>
+             
 
             <td>£${(y1.min.return || 0).toFixed(2)}</td>
             <td>£${(y1.max.return || 0).toFixed(2)}</td>

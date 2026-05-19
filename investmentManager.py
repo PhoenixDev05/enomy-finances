@@ -134,8 +134,17 @@ class investments:
 
     def getQuotes(self, clientID):
         data = []
-        for quote in self.quotes:
+        listQuotes = self.quotes
+        for quote in listQuotes:
+            listQuotes = self.quotes
             if quote["clientID"] == int(clientID):
+                try:
+                    planName = self.plans[int(quote["planID"])-1]["planName"]
+                    
+                except ValueError:
+                    planName = quote["planID"]
+                
+                quote.update({"planID": planName})
                 data.append(quote)
 
         return data

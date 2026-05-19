@@ -1,15 +1,17 @@
 import json
 from datetime import datetime
+from security import security
 class UserManager:
     def __init__(self):
         self.users = []
         self.authUserData = []
+        self.secure = security()
 
         self.users = self.getUsers()
 
     def authenticate(self, username, password):
         for user in self.users:
-            if user["username"] == username and user["password"] == password:
+            if user["username"] == username and self.secure.verifyPass(password,user["password"]):
                 return True
         return False
     
@@ -19,7 +21,6 @@ class UserManager:
                 self.authUserData.append(username)
                 self.authUserData.append(user["firstName"])
                 self.authUserData.append(user["lastName"])
-                self.authUserData.append(user["password"])
                 self.authUserData.append(user["accessLevel"])
                 return self.authUserData
         return None
@@ -48,7 +49,7 @@ class UserManager:
                 user["lastName"] = lastName
                 user["email"] = email
                 if password != "null":
-                    user["password"] = password
+                    user["password"] = self.secure.hashPassword(password)
                 self.saveUserData()
 
         return True
@@ -57,7 +58,7 @@ class UserManager:
         creation = datetime.now().strftime("%Y-%m-%d %H:%M")
         newStaffID = self.users[-1]["staffID"] +1
         newDict = {"staffID": newStaffID, "username":username, "firstName": firstName, "lastName": lastName,
-                   "email": email, "password": password,"accessLevel":0, "created": creation, "lastLogin": ""}
+                   "email": email, "password": self.secure.hashPassword(password),"accessLevel":0, "created": creation, "lastLogin": ""}
         
         self.users.append(newDict)
         self.saveUserData()

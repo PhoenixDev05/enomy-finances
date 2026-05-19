@@ -5,7 +5,7 @@
         "firstName": "adam",
         "lastName": "Minister",
         "email": "admin@admin.com",
-        "password": "admin",
+        "password": "$2b$12$vMH6sP31q4kcRxCyqVRxZu5kRuMcVbqEXA0OnRCdDER78EtY87gqS",
         "accessLevel": 1,
         "created": "2026-04-29 10:42",
         "lastLogin": "2026-04-29 10:42"
@@ -16,7 +16,7 @@
         "firstName": "Test",
         "lastName": "Man",
         "email": "tman@tman.com",
-        "password": "password",
+        "password": "$2b$12$jFlpv1WNpKta65EIcxHWi.uTuHUcO.0NUb4bEhYRp26gCy5gsYZsO",
         "accessLevel": 0,
         "created": "2026-04-29 10:42",
         "lastLogin": "2026-04-29 10:42"
@@ -27,7 +27,7 @@
         "firstName": "test",
         "lastName": "user",
         "email": "email@email.com",
-        "password": "password",
+        "password": "$2b$12$zaaJWhJv6sQAJPM21ZOPf.XoIW4j.UpsccSzB7lF8W5gI.R.BWTvC",
         "accessLevel": 0,
         "created": "2026-05-17 15:51",
         "lastLogin": ""
