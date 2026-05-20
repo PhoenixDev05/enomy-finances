@@ -84,17 +84,17 @@ class CustomerManager:
         self.saveCustomerUpdate()
 
     def deleteCustomer(self, clientID):
-        initCount = len(self.users)
+        initCount = len(self.customers)
         self.customers = [customer for customer in self.customers if customer["clientID"] != int(clientID)]
 
-        if len(self.users) <initCount:
+        if len(self.customers) <initCount:
             self.saveCustomerUpdate()
             self.deleteTransactions(clientID)
             return True
         return False
     
     def deleteTransactions(self, clientID):
-        with open("data/currencyTransactions.json" "r") as f:
+        with open("data/currencyTransactions.json", "r") as f:
             currTrans = json.load(f)
         
         with open("data/quotes.json", "r") as f:
@@ -103,8 +103,8 @@ class CustomerManager:
         currTrans = [trans for  trans in currTrans if trans["clientID"] != int(clientID)]
         quotes = [quote for  quote in quotes if quote["clientID"] != int(clientID)]
 
-        with open("data/currencyTransactions.json" "w") as f:
+        with open("data/currencyTransactions.json","w") as f:
             json.dump(currTrans,f)
         
-        with open("data/quotes.json", "r") as f:
+        with open("data/quotes.json", "w") as f:
             json.dump(quotes,f)

@@ -162,3 +162,21 @@ async function addCustomerAPI(firstName,lastName,email,phone,addr1,addr2,city,po
         }
 
 }
+document.getElementById("deleteButton").addEventListener("click", function()
+{
+    const form = document.querySelector(".cusForm");
+    var clientID = form.querySelector('input[name="cusID"]').value;
+    deleteUser(clientID)
+})
+
+async function deleteUser(clientID)
+{
+    const response = await fetch(`/api/customers/delete/${clientID}`)
+    const data = await response.json()
+    if (data["success"] == true)
+        {
+            document.getElementById("message").innerText = "Customer Deleted";
+            updateTable();
+            
+        }
+}
