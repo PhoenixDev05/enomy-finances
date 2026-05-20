@@ -178,6 +178,16 @@ def addNewCustomerRecord(firstName,lastName,email,phone,addr1,addr2,city,postcod
     audit.addEvent(session["username"], "NEW CUSTOMER ADDED", "Success")
     return jsonify({"success": True})
 
+@app.route("/api/customers/delete/<clientID>")
+@Login_Required
+def deleteCustomer(clientID):
+    success = cusData.deleteCustomer(clientID)
+    if success:
+        audit.addEvent(session["username"], "Customer DELETION", "all data related has been successfully removed")
+        return jsonify({"success": True})
+    else:
+        return jsonify({"success": False})
+
 #---------------------------
 #ADMIN PANEL
 #--------------------------
