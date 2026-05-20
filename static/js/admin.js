@@ -58,6 +58,10 @@ document.getElementById("cusData").addEventListener("click", function(e)
 //clear fields button
 document.getElementById("clearButton").addEventListener("click", function(e)
 {
+    clearInput()
+});
+function clearInput()
+{
     const previousSelected = document.querySelector(".selectedRow");
     if(previousSelected)
         {
@@ -75,7 +79,7 @@ document.getElementById("clearButton").addEventListener("click", function(e)
     form.querySelector('input[name="lastLogin"]').value = "";
     form.querySelector('input[name="password"]').value = "";
     document.getElementById("message").innerText ="";
-    });
+    }
 
 // Modify Entry
 document.getElementById("modButton").addEventListener("click",function()
@@ -127,7 +131,7 @@ document.getElementById("addButton").addEventListener("click",function()
     var password = form.querySelector('input[name="password"]').value;
     //DO THE API STUFF :)
     addUserAPI(username,firstName,lastName,email,password);
-    updateTable();
+    
 })
 
 async function addUserAPI(username,firstName,lastName,email,password)
@@ -137,10 +141,30 @@ async function addUserAPI(username,firstName,lastName,email,password)
     if(success["success"] == true)
         {
             document.getElementById("message").innerText = "Successfully added new user!"
+            updateTable();
         }
     else
         {
             document.getElementById("message").innerText = "unsucessful addition of user";
         }
 
+}
+
+document.getElementById("deleteButton").addEventListener("click", function()
+{
+    const form = document.querySelector(".cusForm");
+    var staffID = form.querySelector('input[name="staffID"]').value;
+    deleteUser(staffID)
+})
+
+async function deleteUser(staffID)
+{
+    const response = await fetch(`/api/users/delete/${staffID}`)
+    const data = await response.json()
+    if (data["success"] == true)
+        {
+            document.getElementById("message").innerText = "User Deleted";
+            updateTable();
+            
+        }
 }

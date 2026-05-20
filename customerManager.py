@@ -82,3 +82,29 @@ class CustomerManager:
     
         self.customers.append(newDict)
         self.saveCustomerUpdate()
+
+    def deleteCustomer(self, clientID):
+        initCount = len(self.users)
+        self.customers = [customer for customer in self.customers if customer["clientID"] != int(clientID)]
+
+        if len(self.users) <initCount:
+            self.saveCustomerUpdate()
+            self.deleteTransactions(clientID)
+            return True
+        return False
+    
+    def deleteTransactions(self, clientID):
+        with open("data/currencyTransactions.json" "r") as f:
+            currTrans = json.load(f)
+        
+        with open("data/quotes.json", "r") as f:
+            quotes = json.load(f)
+
+        currTrans = [trans for  trans in currTrans if trans["clientID"] != int(clientID)]
+        quotes = [quote for  quote in quotes if quote["clientID"] != int(clientID)]
+
+        with open("data/currencyTransactions.json" "w") as f:
+            json.dump(currTrans,f)
+        
+        with open("data/quotes.json", "r") as f:
+            json.dump(quotes,f)

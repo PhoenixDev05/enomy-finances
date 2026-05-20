@@ -68,3 +68,12 @@ class UserManager:
     def saveUserData(self):
         with open("data/users.json", "w") as f:
             json.dump(self.users, f, indent=4)
+
+    def deleteUser(self, staffID):
+        initCount = len(self.users)
+        self.users = [user for user in self.users if user["staffID"] != int(staffID)]
+
+        if len(self.users) <initCount:
+            self.saveUserData()
+            return True
+        return False

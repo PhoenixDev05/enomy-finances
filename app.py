@@ -199,7 +199,7 @@ def getSecure():
 @Login_Required
 def modifyStaff(staffID,username,firstName,lastName,email,password):
     UM.modifyUser(staffID,username,firstName,lastName,email,password)
-    audit.addEvent(session["username"], f"USER OF ID:{staffID}", "Data MODIFICATION SUCCESSFUL")
+    audit.addEvent(session["username"], f"USER OF ID:{staffID} MODIFIED", "Data MODIFICATION SUCCESSFUL")
     return jsonify({"success": True})
 
 @app.route("/api/users/add/<username>/<firstName>/<lastName>/<email>/<password>")
@@ -209,6 +209,15 @@ def addNewUser(username,firstName,lastName,email,password):
     audit.addEvent(session["username"], "NEW USER ADDED", "Successful Addition of user")
     return jsonify({"success": True})
 
+@app.route("/api/users/delete/<staffID>")
+@Login_Required
+def deleteAccount(staffID):
+    deleted = UM.deleteUser(staffID)
+    if deleted:
+        audit.addEvent(session["username"], "USER DELETION", "Successful DELETION of user")
+        return jsonify({"success": True})
+    else:
+        return jsonify({"success": False})
 #logout
 @app.route("/logout")
 @Login_Required

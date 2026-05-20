@@ -23,13 +23,13 @@
     },
     {
         "staffID": 3,
-        "username": "testuser123",
-        "firstName": "test",
-        "lastName": "user",
-        "email": "email@email.com",
-        "password": "$2b$12$zaaJWhJv6sQAJPM21ZOPf.XoIW4j.UpsccSzB7lF8W5gI.R.BWTvC",
+        "username": "johnsmith",
+        "firstName": "john",
+        "lastName": "smith",
+        "email": "jon@jonsmail.com",
+        "password": "$2b$12$.aHFHgDddI8MvcshBMpF2uqaxsxOiTtBC2BuYIWWIy8GCx2BMn.92",
         "accessLevel": 0,
-        "created": "2026-05-17 15:51",
-        "lastLogin": ""
+        "created": "2026-05-20 10:28",
+        "lastLogin": "2026-05-20 10:28"
     }
 ]
