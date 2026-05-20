@@ -167,4 +167,8 @@ async function deleteUser(staffID)
             updateTable();
             
         }
+    else
+        {
+            document.getElementById("message").innerText = "Don't Try to delete your own account...";
+        }
 }

@@ -184,6 +184,7 @@ def deleteCustomer(clientID):
     success = cusData.deleteCustomer(clientID)
     if success:
         audit.addEvent(session["username"], "Customer DELETION", "all data related has been successfully removed")
+        IM.loadQuotes()
         return jsonify({"success": True})
     else:
         return jsonify({"success": False})

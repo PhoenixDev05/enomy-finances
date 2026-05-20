@@ -71,7 +71,8 @@ class UserManager:
 
     def deleteUser(self, staffID):
         initCount = len(self.users)
-        self.users = [user for user in self.users if user["staffID"] != int(staffID)]
+        if int(staffID) !=1:
+            self.users = [user for user in self.users if user["staffID"] != int(staffID)]
 
         if len(self.users) <initCount:
             self.saveUserData()

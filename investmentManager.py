@@ -29,10 +29,7 @@ class investments:
     
     def validateValues(self, planID, initialAmount, monthlyAmount):
         planData = self.plans[int(planID)-1]
-        print(planData)
         yearInvest = float(monthlyAmount) *12
-        print(initialAmount)
-        print(monthlyAmount)
 
         if float(initialAmount) < planData["minLump"]:
             return {"success": False, "message": "Initial Lump sum too Low"}
@@ -52,19 +49,26 @@ class investments:
         planData = self.plans[int(planID)-1]
         taxRate = self.taxes[planData["taxCode"]-1]["taxRate"]
         taxThreshold = self.taxes[planData["taxCode"]-1]["threshold"]
-        minReturnRate = planData["minReturnRate"] / 100
-        maxReturnRate = planData["maxReturnRate"] / 100
+        minReturnRate = planData["minReturnRate"] / 100 /12
+        maxReturnRate = planData["maxReturnRate"] / 100 /12
         feeRate = planData["monthlyFeeRate"] /100
         minTax = 0.0
         maxTax =0.0
         initialAmount = float(initialAmount)
         monthlyAmount = float(monthlyAmount)
         output = {}
+        try:
 
+            
+            taxRate[1] = taxRate[1]/100
+            taxRate[0] = taxRate[0]/100
+
+        except:
+            taxRate[0] = taxRate[0] /100
         for year in years:
             months = year*12
-            maxReturn = float(initialAmount) * ((1+maxReturnRate) ** float(months)) + monthlyAmount * (((1 + maxReturnRate) ** float(months) - 1) / maxReturnRate)
-            minReturn = float(initialAmount) * ((1+minReturnRate) ** float(months)) + monthlyAmount * (((1 + minReturnRate) ** float(months) - 1) / minReturnRate)
+            maxReturn = float(initialAmount) * (((1+maxReturnRate)) ** float(months)) + monthlyAmount * (((1 + maxReturnRate) ** float(months) - 1) / maxReturnRate)
+            minReturn = float(initialAmount) * (((1+minReturnRate)) ** float(months)) + monthlyAmount * (((1 + minReturnRate) ** float(months) - 1) / minReturnRate)
             
             totalInvested = initialAmount + (monthlyAmount * 12 * year)
             maxProfit = maxReturn - totalInvested
@@ -84,16 +88,17 @@ class investments:
                 else:
                     maxTax = 0
             else:
+                
                 if minProfit > taxThreshold[1]:
-                    minTax = ((minProfit - taxThreshold[1])*taxRate[1])+((taxThreshold[1] - taxThreshold[0])*taxRate[0])
+                    minTax = ((minProfit - taxThreshold[1])*(taxRate[1]))+((taxThreshold[1] - taxThreshold[0])*taxRate[0])
                 elif minProfit > taxThreshold[0]:
-                    minTax = (minProfit - taxThreshold[0])*taxRate[0]
+                    minTax = (minProfit - taxThreshold[0])*(taxRate[0])
                 else:
                     minTax = 0
 
                 if maxProfit > taxThreshold[1]:
                     maxTax = ((maxProfit - taxThreshold[1])*taxRate[1])+((taxThreshold[1] - taxThreshold[0])*taxRate[0])
-                elif minProfit > taxThreshold[0]:
+                elif maxProfit > taxThreshold[0]:
                     maxTax = (maxProfit - taxThreshold[0])*taxRate[0]
                 else:
                     maxTax = 0
