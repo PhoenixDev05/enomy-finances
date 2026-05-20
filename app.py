@@ -213,6 +213,7 @@ def addNewUser(username,firstName,lastName,email,password):
 @app.route("/logout")
 @Login_Required
 def logout():
+    audit.addEvent(session["username"], "Logoff", "Successful Logout")
     session.clear()
     UM.logout()
     return redirect("/")

@@ -12,6 +12,8 @@ class UserManager:
     def authenticate(self, username, password):
         for user in self.users:
             if user["username"] == username and self.secure.verifyPass(password,user["password"]):
+                user["lastLogin"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+                self.saveUserData()
                 return True
         return False
     

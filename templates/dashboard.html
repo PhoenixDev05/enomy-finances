@@ -5,12 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enomy Finances | Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"defer></script>
+    <script src="static/js/dashboard.js" defer></script>
 
 </head>
 <body>
     {% include 'navbar.html'%}
     <div class="content">
-        <h2>hello, {{session['fname']}}</h2>
+        <h2>Enomy Finances | Dashboard - hello, {{session['fname']}}</h2>
+        <div class="row">
+
+        </div>
+        <div class="row">
+            <div class="currInput">
+                <h3>Quick Currency Rate</h3>
+                <div class="recordRow">
+                    <label for="baseCurr">Source Currency:</label>
+                    <select name="baseCurr" id="baseCurr">
+                        <option value="GBP">Great British Pounds</option>
+                        <option value="USD">US Dollars</option>
+                        <option value="EUR">Euro</option>
+                        <option value="BRL">Brazilian Real</option>
+                        <option value="JPY">Japenese Yen</option>
+                        <option value="TRY">Turkish Lira</option>
+                    </select>
+                </div>
+                <div class="recordRow">
+                    <label for="conCurr">Target Currency:</label>
+                    <select name="conCurr" id="conCurr">
+                        <option value="GBP">Great British Pounds</option>
+                        <option value="USD">US Dollars</option>
+                        <option value="EUR">Euro</option>
+                        <option value="BRL">Brazilian Real</option>
+                        <option value="JPY">Japenese Yen</option>
+                        <option value="TRY">Turkish Lira</option>
+                    </select>
+                </div>
+                
+            </div>
+            <div class="exchangeGraph">
+                <canvas id="historyGraph" width="300px" height="100px"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <div class="investTable">
+                <table>
+                    <thead>
+                        <th>PlanID</th>
+                        <th>Name</th>
+                        <th>Desc</th>
+                        <th>Max Year</th>
+                        <th>Min Lump</th>
+                        <th>Min Monthly</th>
+                        <th>minReturn(%)</th>
+                        <th>maxReturn(%)</th>
+                        <th>TaxRate | Threshold</th>
+                        <th>Fee (%)</th>
+                    
+                    </thead>
+                    <tbody id="planTable">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
     
 </body>
