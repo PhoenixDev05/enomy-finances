@@ -100,11 +100,11 @@ class CustomerManager:
         with open("data/quotes.json", "r") as f:
             quotes = json.load(f)
 
-        currTrans = [trans for  trans in currTrans if trans["clientID"] != int(clientID)]
+        currTrans = [trans for  trans in currTrans if trans["clientID"] != str(clientID)]
         quotes = [quote for  quote in quotes if quote["clientID"] != int(clientID)]
 
         with open("data/currencyTransactions.json","w") as f:
-            json.dump(currTrans,f)
+            json.dump(currTrans,f,indent=4)
         
         with open("data/quotes.json", "w") as f:
-            json.dump(quotes,f)
+            json.dump(quotes,f, indent=4)
