@@ -46,11 +46,11 @@
                     </div>
                 <div class="recordRow">
                     <label for="initialAmount">Initial Amount</label>
-                    <input type="number" name="monthlyAmount" id="initialAmount">
+                    <input type="number" name="monthlyAmount" id="initialAmount" onkeydown="if(['e', 'E', '-', '+'].includes(event.key)) event.preventDefault();">
                 </div>
                 <div class="recordRow">
                     <label for="monthlyAmount">Monthly Amount:</label>
-                    <input type="number" name="monthlyAmount" id="monthlyAmount">
+                    <input type="number" name="monthlyAmount" id="monthlyAmount" onkeydown="if(['e', 'E', '-', '+'].includes(event.key)) event.preventDefault();">
                 </div>
                 <div class="recordRow">
                     <label for="planCombo">Plan:</label>

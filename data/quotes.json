@@ -2,7 +2,7 @@
     {
         "quoteID": 1,
         "clientID": 1,
-        "planID": 1,
+        "planID": "Basic Savings Plan",
         "initialAmount": 100,
         "monthlyAmount": 100,
         "dateMade": "2026-05-17",
@@ -69,7 +69,7 @@
     {
         "quoteID": 2,
         "clientID": 1,
-        "planID": 1,
+        "planID": "Basic Savings Plan",
         "initialAmount": 1000.0,
         "monthlyAmount": 1000.0,
         "dateMade": "2026-05-19",

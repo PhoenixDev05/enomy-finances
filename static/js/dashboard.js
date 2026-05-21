@@ -63,12 +63,12 @@ async function updatePlanTable()
         
         if(plan.planID == 3)
             {
-                plan.taxRate = `${plan.taxRate[0]} | ${plan.threshold[0]}<br>${plan.taxRate[1]} | ${plan.threshold[1]}`;
+                plan.taxRate = `${plan.taxRate[0]*100} | ${plan.threshold[0]}<br>${plan.taxRate[1]*100} | ${plan.threshold[1]}`;
                 plan.maxInvestYr = "Unlimited"
             }
         else
             {
-                plan.taxRate = `${plan.taxRate} | ${plan.threshold}`
+                plan.taxRate = `${plan.taxRate*100} | ${plan.threshold}`
             }
         const row =`<tr data-id='${plan.planID}'>
                 <td>${plan.planID}</td>

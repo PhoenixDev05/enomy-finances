@@ -19,23 +19,23 @@ class Exchange():
         date = now.strftime("%Y-%m-%d")
         #print(self.currentRates["date"])
         if self.currentRates["date"] != date:
-            #try:
-            url = "https://api.exchangerate-api.com/v4/latest/GBP"
-            response = requests.get(url).json()
-            print(response)
-            with open("data/todayRate.json", "w") as f:
-                json.dump({"base": "GBP","date": date, "rates": response["rates"]}, f, indent=4)
+            try:
+                url = "https://api.exchangerate-api.com/v4/latest/GBP"
+                response = requests.get(url).json()
+                print(response)
+                with open("data/todayRate.json", "w") as f:
+                    json.dump({"base": "GBP","date": date, "rates": response["rates"]}, f, indent=4)
 
-            with open("data/exchangeHistory.json", "r") as f:
-                data = json.load(f)
+                with open("data/exchangeHistory.json", "r") as f:
+                    data = json.load(f)
                         
-            data.append({"base": "GBP","date": date, "rates": response["rates"]})
+                data.append({"base": "GBP","date": date, "rates": response["rates"]})
                 
-            with open("data/exchangeHistory.json", "w") as f:
-                json.dump(data, f, indent=4)
+                with open("data/exchangeHistory.json", "w") as f:
+                    json.dump(data, f, indent=4)
             
-            #except:
-                print("AHHHHHH")
+            except:
+                print("USING OLD VALUES")
             
             #then appends it to json file
         
@@ -82,7 +82,7 @@ class Exchange():
         conv = round(conv,2)
         return conv 
     
-    def calcFees(self, startAmount, startCurrency,convAmount):
+    def calcFees(self, startAmount, startCurrency,targetCurrency, convAmount):
             if startCurrency !="GBP":
                 startAmount_1 = self.conversion(startCurrency, "GBP", int(startAmount))
             else:
@@ -94,7 +94,7 @@ class Exchange():
                     tax = fee["fee"]
                     charge = (tax/100) * int(startAmount_1)
                     charge = round(charge,2)
-                    total = int(convAmount) - self.conversion("GBP", startCurrency,charge)
+                    total = int(convAmount) - self.conversion("GBP",targetCurrency ,charge)
                     success = True
                     print(total)
             if success:

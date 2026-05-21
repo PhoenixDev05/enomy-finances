@@ -114,7 +114,7 @@ def currExchangeAPI(startCurr, targetCurr, startAmount, clientID):
     currExchange.getBaseRate(startCurr)
     currExchange.getTargetRate(targetCurr)
     convertedValue = currExchange.conversion(startCurr, targetCurr, startAmount)
-    feeInfo = currExchange.calcFees(startAmount, startCurr,convertedValue)
+    feeInfo = currExchange.calcFees(startAmount, startCurr, targetCurr,convertedValue)
     fee = feeInfo["charge"]
     tax = feeInfo["tax"]
     total = feeInfo["total"]
