@@ -50,3 +50,5 @@
 [2026-05-20 11:33:00] [127.0.0.1] [User: admin | Action: Login Attempt | Result: Successful Login]
 [2026-05-20 11:34:42] [127.0.0.1] [User: admin | Action: USER DELETION | Result: Successful DELETION of user]
 [2026-05-20 11:50:42] [127.0.0.1] [User: admin | Action: Logoff | Result: Successful Logout]
+[2026-05-20 11:52:47] [127.0.0.1] [User: admin | Action: Login Attempt | Result: Failed Login Attempt]
+[2026-05-20 11:56:09] [127.0.0.1] [User: admin | Action: Login Attempt | Result: Successful Login]
